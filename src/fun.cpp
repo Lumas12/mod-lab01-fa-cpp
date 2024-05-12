@@ -3,34 +3,27 @@
 #include <math.h>
 #include <ctype.h>
 
-unsigned int countWords(const char *str) {
-    int count = 0;
-    bool inWord = false;
-
-    for (int i = 0; str[i] != '\0'; i++) {
-        if (!inWord && !isspace(str[i])) {
-            inWord = true;
-            count++;
-        } else if (inWord && isspace(str[i])) {
-            inWord = false;
-        }
-    }
-
-    return count;
-}
-
 unsigned int faStr1(const char *str) {
     unsigned int count = 0;
     bool inWord = false;
+    bool hasDig = false;
 
     while (*str) {
         if (!inWord && !isdigit(*str)) {
             inWord = true;
-            ++count;
+            hasDig = false;
+            
         } else if (inWord && isspace(*str)) {
+            hasDig = false;
+            ++count;
             inWord = false;
-        }
+        } else if (inWord && isdigit(*str)){
+            hasDig = true;
         ++str;
+    }
+
+    if(inWord && !hasDig){
+        ++count;
     }
 
     return count;
