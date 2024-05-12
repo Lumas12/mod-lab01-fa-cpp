@@ -32,23 +32,29 @@ unsigned int faStr1(const char *str) {
     return count;
 }
 
-unsigned int faStr2(const char *str) {
-    unsigned int count = 0;
-    bool newWord = false;
-
-    while (*str) {
-        if (isupper(*str) && !newWord) {
-            newWord = true;
-        } else if (isalpha(*str)) {
-            newWord = false;
-        } else if (isspace(*str) && newWord) {
-            ++count;
-            newWord = false;
-        } 
-        ++str;
+unsigned int faStr2(const char *text) {
+    int wordCount = 0;
+    bool isWithinWord = false;
+    bool isFirstCapital = false;
+    int position = 0;
+    while (text[position]!= '\0') {
+        if (isWithinWord && text[position]!= ' ' && text[position] >= 'A' && text[position] <= 'Z') {
+            isFirstCapital = false;
+        }
+        if (!isWithinWord && text[position]!= ' ') {
+            isWithinWord = true;
+            isFirstCapital = text[position] >= 'A' && text[position] <= 'Z';
+        }
+        if (isWithinWord && text[position] == ' ') {
+            if (isFirstCapital) {
+                wordCount++;
+            }
+            isFirstCapital = false;
+            isWithinWord = false;
+        }
+        position++;
     }
-
-    return count;
+    return wordCount;
 }
 
 
