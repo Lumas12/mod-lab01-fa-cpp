@@ -32,29 +32,32 @@ unsigned int faStr1(const char *str) {
     return count;
 }
 
-unsigned int faStr2(const char *text) {
-    int wordCount = 0;
-    bool isWithinWord = false;
-    bool isFirstCapital = false;
-    int position = 0;
-    while (text[position]!= '\0') {
-        if (isWithinWord && text[position]!= ' ' && text[position] >= 'A' && text[position] <= 'Z') {
-            isFirstCapital = false;
+#include <stdbool.h>
+
+unsigned int faStr2(const char *str) {
+    int index = 0;
+    bool inside = false;
+    int count = 0;
+    
+    while (str[index]) {
+        if (isupper(str[index]) && (index == 0 || str[index - 1] == ' ')) {
+            count++;
+            inside = true;
         }
-        if (!isWithinWord && text[position]!= ' ') {
-            isWithinWord = true;
-            isFirstCapital = text[position] >= 'A' && text[position] <= 'Z';
-        }
-        if (isWithinWord && text[position] == ' ') {
-            if (isFirstCapital) {
-                wordCount++;
+        else if (!isalpha(str[index])) {
+            if (inside) {
+                count--;
+                inside = false;
             }
-            isFirstCapital = false;
-            isWithinWord = false;
         }
-        position++;
+        else if (str[index] == ' ') {
+            inside = false;
+        }
+        
+        index++;
     }
-    return wordCount;
+    
+    return count;
 }
 
 
