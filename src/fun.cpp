@@ -16,10 +16,9 @@ unsigned int faStr1(const char *const str) {
     bool inWord = false;
 
     for (const char *ptr = str; *ptr; ++ptr) {
-        if (!inWord && !std::isspace(*ptr)) {
+        if (!inWord && !std::isdigit(*ptr)) {
             inWord = true;
-            if (!std::isdigit(*ptr)) // Count word only if it doesn't contain digits
-                ++count;
+            ++count;
         } else if (inWord && std::isspace(*ptr)) {
             inWord = false;
         }
@@ -61,10 +60,6 @@ unsigned int faStr3(const char *const str) {
             inWord = false;
         }
     }
-
-    if (wordCount == 0) return 0; // Avoid division by zero
-    return sumLength / wordCount;
-}
 
     return sumLength / wordCount;
 }
