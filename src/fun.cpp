@@ -9,21 +9,22 @@ unsigned int faStr1(const char *str) {
     bool hasDig = false;
 
     while (*str) {
-        if (!inWord && !isdigit(*str)) {
+        if (!inWord &&!isspace(*str)) {
             inWord = true;
             hasDig = false;
-            
         } else if (inWord && isspace(*str)) {
-            hasDig = false;
-            ++count;
             inWord = false;
-        } else if (inWord && isdigit(*str)){
+            if (!hasDig) {
+                ++count;
+            }
+            hasDig = false;
+        } else if (isdigit(*str)) {
             hasDig = true;
         }
-        ++str;
+        str++;
     }
 
-    if(inWord && !hasDig){
+    if (inWord && !hasDig) {
         ++count;
     }
 
