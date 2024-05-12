@@ -35,23 +35,24 @@ unsigned int faStr1(const char *str) {
 
 
 unsigned int faStr2(const char *str) {
-    int index = 0;
     bool inside = false;
     int count = 0;
-    
-    while (str[index]) {
-    if (isalpha(str[index])) {
-        if (!inside) {
-            inside = true;
-            count++;
+
+    while (*str) {
+    if (isupper(*str)) {
+        inside = true;
     }
-    } else {
+    if (!isalpha(*str)) {
         inside = false;
     }
-        index++;
+    if (isspace(*str) && inside) {
+        count++;
+        inside = false;
+    }
+    str++;
     }
     return count;
-}
+} 
 
 
 unsigned int faStr3(const char *str) {
