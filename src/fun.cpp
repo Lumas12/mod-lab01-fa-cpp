@@ -39,7 +39,7 @@ unsigned int faStr2(const char *str) {
     while (*str) {
         if (isupper(*str) && !newWord) {
             newWord = true;
-        } else if (isNotLetter(*str) {
+        } else if (isalpha(*str)) {
             newWord = false;
         } else if (isspace(*str) && newWord) {
             ++count;
