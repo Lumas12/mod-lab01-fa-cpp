@@ -39,17 +39,16 @@ unsigned int faStr2(const char *str) {
     int count = 0;
     int ind = 0;
     while (str[ind]) {
-        if ((!isspace(str[ind])) && (isspace(str[ind - 1])) && (isupper(str[ind]))) {            
+        if ((ind == 0 || isspace(str[ind - 1])) && (isupper(str[ind]))) {            
             inside = true;
+        } else if (((str[ind] < 97) || (str[ind] > 122)) && inside){                
+                inside = false;
         }
         if (isspace(str[ind]) && inside){
             count++;
             inside = false;
-        }        
-        if (((str[ind] < 97) || (str[ind] > 122)))
-            if (inside) {                
-                inside = false;
-            }
+        }
+        
         ind++;
     }
     return count;
