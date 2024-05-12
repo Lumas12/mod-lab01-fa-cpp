@@ -2,6 +2,7 @@
 #include "fun.h"
 #include <math.h>
 #include <ctype.h>
+#include <cctype>
 
 unsigned int faStr1(const char *str) {
     unsigned int count = 0;
@@ -33,15 +34,17 @@ unsigned int faStr1(const char *str) {
 
 unsigned int faStr2(const char *str) {
     unsigned int count = 0;
-    bool newWord = true;
+    bool newWord = false;
 
     while (*str) {
-        if (newWord && isupper(*str)) {
+        if (isupper(*str) && !newWord) {
+            newWord = true;
+        } else if (isNotLetter(*str) {
+            newWord = false;
+        } else if (isspace(*str) && newWord) {
             ++count;
             newWord = false;
-        } else if (isspace(*str)) {
-            newWord = true;
-        }
+        } 
         ++str;
     }
 
