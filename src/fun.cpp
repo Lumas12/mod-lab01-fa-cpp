@@ -40,7 +40,7 @@ unsigned int faStr2(const char *str) {
     int count = 0;
     
     while (str[index]) {
-        if (isupper(str[index]) && (index == 0 || str[index - 1] == ' ')) {
+        if (isupper(str[index])) {
             count++;
             inside = true;
         }
