@@ -38,22 +38,22 @@ unsigned int faStr2(const char *str) {
     bool inside = false;
     int count = 0;
     int ind = 0;
-    while (str[ind]){
-        if ((!isspace(str[i]))  && (isspace(str[i - 1])) && (isupper(str[ind]))) {
-          count++;
-          inside = true;
+    while (str[ind]) {
+        if ((!isspace(str[ind])) && (isspace(str[ind - 1])) && (isupper(str[ind]))) {
+            count++;
+            inside = true;
         }
-        i++;
-        if (isspace(str[i]))
+        ind++;
+        if (isspace(str[ind]))
             inside = false;
-        if (((str[i] < 97) || (str[i]>122)))
+        if (((str[ind] < 97) || (str[ind] > 122)))
             if (inside) {
                 count--;
-                    inWord = false;
+                inside = false;
             }
     }
-    return count; 
-} 
+    return count;
+}
 
 
 unsigned int faStr3(const char *str) {
