@@ -20,35 +20,34 @@ unsigned int countWords(const char *str) {
 }
 
 unsigned int faStr1(const char *str) {
-    int count = 0;
-    bool containsNumbers = false;
+    unsigned int count = 0;
+    bool inWord = false;
 
-    for (int i = 0; str[i] != '\0'; i++) {
-        if (!containsNumbers && isdigit(str[i])) {
-            containsNumbers = true;
+    while (*str) {
+        if (!inWord && !std::isdigit(*str)) {
+            inWord = true;
+            ++count;
+        } else if (inWord && std::isspace(*str)) {
+            inWord = false;
         }
-        if (isspace(str[i]) || str[i + 1] == '\0') {
-            if (!containsNumbers) {
-                count++;
-            }
-            containsNumbers = false;
-        }
+        ++str;
     }
 
     return count;
 }
 
 unsigned int faStr2(const char *str) {
-    int count = 0;
-    bool firstWord = true;
+    unsigned int count = 0;
+    bool newWord = true;
 
-    for (int i = 0; str[i] != '\0'; i++) {
-        if (firstWord && isupper(str[i])) {
-            count++;
-            firstWord = false;
-        } else if (isspace(str[i])) {
-            firstWord = true;
+    while (*str) {
+        if (newWord && std::isupper(*str)) {
+            ++count;
+            newWord = false;
+        } else if (std::isspace(*str)) {
+            newWord = true;
         }
+        ++str;
     }
 
     return count;
