@@ -19,8 +19,8 @@ unsigned int faStr1(const char *str) {
             inWord = false;
         } else if (inWord && isdigit(*str)){
             hasDig = true;
-            ++str;
         }
+        ++str;
     }
 
     if(inWord && !hasDig){
