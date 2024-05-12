@@ -45,13 +45,12 @@ unsigned int faStr2(const char *str) {
                 inside = false;
             }
         } else {
-            if (isupper(*str)){
+            if (isupper(*str)) {
                 inside = true;
             } else if (!islower(*str)) {
                 inside = false;
             }
         }
-        
         ++str;
     }
     return count;
