@@ -37,19 +37,22 @@ unsigned int faStr1(const char *str) {
 unsigned int faStr2(const char *str) {
     bool inside = false;
     int count = 0;
-    int ind = 0;
-    while (str[ind]) {
-        if ((ind == 0 || isspace(str[ind - 1])) && (isupper(str[ind]))) {            
-            inside = true;
-        } else if (((str[ind] < 97) || (str[ind] > 122)) && inside){                
+
+    while (*str) {
+        if (*str == ' ' || *str == '\0') {
+            if (inside) {
+                count++;
                 inside = false;
-        }
-        if (isspace(str[ind]) && inside){
-            count++;
-            inside = false;
+            }
+        } else {
+            if (isupper(*str)){
+                inside = true;
+            } else if (!islower(*str)) {
+                inside = false;
+            }
         }
         
-        ind++;
+        ++str;
     }
     return count;
 }
