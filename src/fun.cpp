@@ -2,7 +2,7 @@
 #include <algorithm>
 #include <cmath>
 #include <cctype>
-#include <iterator>
+#include <cstring>
 
 unsigned int countWords(const char *const str) {
     return std::count_if(str, str + std::strlen(str), [](char c) {
