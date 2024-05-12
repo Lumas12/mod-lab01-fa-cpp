@@ -41,18 +41,18 @@ unsigned int faStr2(const char *str) {
     
     while (str[index]) {
         if (isupper(str[index])) {
-            count++;
             inside = true;
         }
         else if (!isalpha(str[index])) {
             if (inside) {
-                count--;
                 inside = false;
             }
         }
-        else if (str[index] == ' ') {
+        else if (str[index] == ' ' && inside) {
+            count++;
             inside = false;
         }
+            
         
         index++;
     }
