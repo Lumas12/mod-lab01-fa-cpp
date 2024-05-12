@@ -32,7 +32,7 @@ unsigned int faStr1(const char *str) {
     return count;
 }
 
-#include <stdbool.h>
+
 
 unsigned int faStr2(const char *str) {
     int index = 0;
@@ -40,16 +40,14 @@ unsigned int faStr2(const char *str) {
     int count = 0;
     
     while (str[index]) {
-        if (isupper(str[index])) {
+    if (isalpha(str[index])) {
+        if (!inside) {
             inside = true;
-        }
-        if (isspace(*str) && inside) {
             count++;
-            inside = false;
-        }
-        if (!isalpha(str[index])) {
-            inside = false;
-        }        
+    }
+    } else {
+        inside = false;
+    }
         index++;
     }
     return count;
