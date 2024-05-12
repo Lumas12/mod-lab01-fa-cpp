@@ -43,13 +43,13 @@ unsigned int faStr2(const char *str) {
         if (isupper(str[index])) {
             inside = true;
         }
-        if (!isalpha(str[index])) {
-            inside = false;
-        }
         if (isspace(*str) && inside) {
             count++;
             inside = false;
         }
+        if (!isalpha(str[index])) {
+            inside = false;
+        }        
         index++;
     }
     return count;
