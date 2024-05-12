@@ -37,21 +37,22 @@ unsigned int faStr1(const char *str) {
 unsigned int faStr2(const char *str) {
     bool inside = false;
     int count = 0;
-
-    while (*str) {
-    if (isupper(*str)) {
-        inside = true;
+    int ind = 0;
+    while (str[ind]){
+        if ((!isspace(str[i]))  && (isspace(str[i - 1])) && (isupper(str[ind]))) {
+          count++;
+          inside = true;
+        }
+        i++;
+        if (isspace(str[i]))
+            inside = false;
+        if (((str[i] < 97) || (str[i]>122)))
+            if (inside) {
+                count--;
+                    inWord = false;
+            }
     }
-    if (!isalpha(*str)) {
-        inside = false;
-    }
-    if (isspace(*str) && inside) {
-        count++;
-        inside = false;
-    }
-    str++;
-    }
-    return count;
+    return count; 
 } 
 
 
