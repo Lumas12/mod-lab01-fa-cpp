@@ -24,10 +24,10 @@ unsigned int faStr1(const char *str) {
     bool inWord = false;
 
     while (*str) {
-        if (!inWord && !std::isdigit(*str)) {
+        if (!inWord && !isdigit(*str)) {
             inWord = true;
             ++count;
-        } else if (inWord && std::isspace(*str)) {
+        } else if (inWord && isspace(*str)) {
             inWord = false;
         }
         ++str;
@@ -41,10 +41,10 @@ unsigned int faStr2(const char *str) {
     bool newWord = true;
 
     while (*str) {
-        if (newWord && std::isupper(*str)) {
+        if (newWord && isupper(*str)) {
             ++count;
             newWord = false;
-        } else if (std::isspace(*str)) {
+        } else if (isspace(*str)) {
             newWord = true;
         }
         ++str;
@@ -52,6 +52,7 @@ unsigned int faStr2(const char *str) {
 
     return count;
 }
+
 
 unsigned int faStr3(const char *str) {
     int count = 0;
